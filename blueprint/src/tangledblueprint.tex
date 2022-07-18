@@ -752,13 +752,13 @@ The greediest approach, which can’t fail to work, is to assume some form of �
   Given $\alpha \in \lambda$, and a freedom of action context at each $\beta < \alpha$, together with extensions of their top-level core tangle data to full tangle data at each $\beta < \alpha$, there is a \emph{synthesised} freedom of action context at $\alpha$, with its top-level core tangle data given by the constructions of phase 1.
 \end{definition}
 
-\section{Freedom of action [new version]}
+\section{Freedom of action}
 
 A key technical lemma, used both for counting tangles and for proving that they satisfy comprehension, is the proof that allowable permutations act freely, in a suitable sense.
 
-Roughly, any consistent and locally small specification of values of derivatives of an allowable permutation at elements of type $-1$ can be realized.
+Roughly, any consistent and locally small specification of values of derivatives of an allowable permutation at elements of type $-1$ can be extended to some allowable permutation.
 
-In order to state the theorem precisely, we must first set up a framework for discussing partial specifications of structural/allowable permutations.
+It takes some work to state the theorem precisely; we begin by setting up a framework for discussing partial specifications of structural/allowable permutations.
 
 \begin{definition}
   \label{def:binary-condition}
@@ -770,7 +770,7 @@ In order to state the theorem precisely, we must first set up a framework for di
 \end{definition}
 
 \begin{definition}
-  \label{def:condition-functoriality}
+  \label{def:restrict-binary-condition}
   \uses{def:binary-condition}
   Paths act covariantly on binary conditions.  Explicitly, a path $A : \beta \to \alpha$ induces a map $(-)A \BiCond_\beta \to \BiCond_\alpha$, defined by $(x,B)A := (x,BA)$; and this preserves identities and composition.
 
@@ -787,7 +787,7 @@ In order to state the theorem precisely, we must first set up a framework for di
 
 \begin{proposition}
   \label{prop:conditions-from-perm-restriction}
-  \uses{def:conditions-from-perm,def:condition-functoriality}
+  \uses{def:conditions-from-perm,def:restrict-binary-condition}
   This identification of permutations respects the actions of paths.  That is, given a structural permutation $\pi$, the graph of the derivative $\pi_A$ is precisely the restriction along $A$ of the graph of $\pi$ (as our notational identification suggests).
 \end{proposition}
 
@@ -819,7 +819,7 @@ In order to state the theorem precisely, we must first set up a framework for di
 
 \begin{proposition}
   \label{prop:total-1-1-restriction}
-  \uses{def:condition-total-1-1,def:condition-functoriality}
+  \uses{def:condition-total-1-1,def:restrict-binary-condition}
   If a set of $\alpha$-conditions $\sigma$ is total (resp.\ co-total, 1-1) then so is its restriction $\sigma_A$ for any path $A : \beta \to \alpha$.
 \end{proposition}
 
@@ -831,7 +831,7 @@ In order to state the theorem precisely, we must first set up a framework for di
 
 \begin{definition}
   \label{def:allowable-partial-perm}
-  \uses{def:condition-total-1-1,def:condition-functoriality,def:flexible-condition}
+  \uses{def:condition-total-1-1,def:restrict-binary-condition,def:flexible-condition}
   Assume a freedom of action context at a proper type index $\alpha$.
 
   An \emph{allowable partial permutation} is a set $\sigma$ of binary $\alpha$-conditions satisfying the following properties:
@@ -983,37 +983,29 @@ In order to make use of the inductive assumption that freedom of action holds at
 \end{proof}
 
 \section{Strong supports defined}
-
-NOTE: much of this section has not been updated since early in the formalisation, so may not match the current implementation and abstractions very closely.
-
-Throughout this section, fix some $\alpha \in \lambda + 1$, and assume a freedom of action context at $\alpha$.
-
-Treating supports as sets suffices for the model description, but we will need to analyze supports and orbits with more care, so it is better for purposes
-of the proof to equip supports with a well-orderings.
-
-We may write $x \leq_S y$ for $(x,y) \in S$, and $x <_S y$ when we also want to indicate that $x,y$ are distinct.
-
-If $\pi$ is an $\alpha$-allowable permutation and $S$ is an $\alpha$-support, we define $\pi[S]$ as $$\{((\pi_A(x),A,\gamma),(\pi_B(y),B,\delta)):((x,A,\gamma),(y,B,\delta))\in S\}.$$
-
-If $S$ is an $\alpha$-support, we define $S^+$ as $\{(x,A,\alpha):(x,A,\alpha) \in S\}$.
-
-We can then say that $S$ is a support of $X$ if $X$ is an $\alpha$-code, $S$ is an $\alpha$-support, and for any $\alpha$-allowable permutation $\pi$, if $\pi[S^+]=S^+$ then $\pi(x)=x$.  In some sense the items in the support with third components less than $\alpha$ are fluff, but they {\em are\/} important as we will see.
-
-\begin{description}
-\item[Remark on definitions of support and symmetry:]  It should be clear that the supports we have defined here do exactly the same work as the set supports in the model description (since the additional order structure and the third components of support domain elements actually do no work at this point).
-\end{description}
-
-% \begin{comment}
-This probably represents a chunk of formal verification work, as what is obvious to people is not always obvious to theorem provers.
-% \end{comment}
+Throughout this section, fix some $\alpha \in \lambda$, and assume a freedom of action context at $\alpha$.
 
 \begin{definition}
   \label{def:strong-support}
   \uses{def:foa-context,def:constrains}
-  A \emph{strong support} is a support $S$ equipped with a well-ordering $\prec_S$, such that whenever $c \in S$ and $d$ constrains $c$, then $d \in S$ and $d \prec_S c$.
+  A \emph{well-ordered support} (at level $\alpha$) is an $\alpha$-support $S$ equipped with a well-ordering $\prec_S$; it is \emph{strong} if whenever $c \in S$ and $d$ constrains $c$, then $d \in S$ and $d \prec_S c$.
+
+  Allowable permutations act on well-ordered supports by forward image. (But note that this action may not preserve strongness, since the “constrains” relation is not $\All$-equivariant!)
+
+  Paths act covariantly on unary conditions (compare \cref{def:restrict-binary-condition}); hence by inverse image, they act evidently on supports and well-ordered supports.  Specifically, for a support $S$ and a path $A : \beta \pathto \alpha$, $S_A = \{ (x,B) \mid (x,(B;A)) \in S \}$.
 \end{definition}
 
 \begin{lemma}
+  \label{def:restrict-strong-support}
+  \uses{def:strong-support}
+  The restriction $S_A$ of a strong support along a path is again strong.
+\end{lemma}
+
+\begin{proof}
+  Restriction \emph{reflects} (not preserves!) the “constrains” relation.  (Probably that should be an independent lemma, at least in the formalisation.)
+\end{proof}
+
+\begin{lemma}[Strenthening supports]
   \label{lem:strengthen-support}
   \uses{def:strong-support}
   Any support is a subset of some strong support (and hence any tangle is supported by some strong support).
@@ -1027,6 +1019,7 @@ This probably represents a chunk of formal verification work, as what is obvious
 
   Now “constrains” on $\downarrow S$ is a well-founded relation; and any well-founded relation can be extended to a well-ordering.  [This is a standard general theorem which is hopefully already in mathlib. If not, it can be proven probably most easily by Zorn’s lemma.]
 \end{proof}
+
 
 \section{Types are of size \texorpdfstring{$\mu$}{μ} (so the construction actually succeeds)}
 
