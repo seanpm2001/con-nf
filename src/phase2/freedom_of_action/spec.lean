@@ -35,6 +35,41 @@ open struct_perm
 section
 variables {α β γ : type_index}
 
+/-- A *specification condition* is for now, the same as a simple support condition; but it may later be generalised, so that strong supports and allowable specifications can contain higher tangles directly -/
+@[derive [inhabited]]
+def spec_condition (α : type_index) : Type u := (atom ⊕ near_litter) × extended_index α
+
+namespace spec_condition
+
+/-- For now, `spec_condition.of_support_condition` is in fact an equivalence; but we don’t provide that, since we plan to generalise `spec_condition`, making this function non-invertible. -/
+def of_support_condition : support_condition α → spec_condition α
+  := λ c, c
+
+/-- We can extend any support condition to one of a higher proper type index `α` by providing a path
+connecting the old extended index up to `α`. -/
+def extend_path (c : spec_condition β) (A : path (α : type_index) β) :
+  spec_condition α := ⟨c.fst, A.comp c.snd⟩
+
+end spec_condition
+
+namespace struct_perm
+
+noncomputable instance mul_action_spec_condition : mul_action (struct_perm α) (spec_condition α) :=
+{ smul := λ π c, ⟨derivative c.snd π • c.fst, c.snd⟩,
+  one_smul := by { rintro ⟨atoms | Ns, A⟩; unfold has_smul.smul; simp },
+  mul_smul := begin
+    rintro π₁ π₂ ⟨atoms | Ns, A⟩; unfold has_smul.smul;
+    rw derivative_mul; dsimp; rw mul_smul,
+  end }
+
+noncomputable instance mul_action_spec_condition' {B : le_index α} {β : Λ} {γ : type_index} {hγ : γ < β}
+  (A : path (B : type_index) β) :
+  mul_action (struct_perm ((lt_index.mk' hγ (B.path.comp A)) : le_index α).index)
+    (spec_condition γ) :=
+struct_perm.mul_action_spec_condition
+
+namespace struct_perm
+
 /-- A *binary condition* is like a support condition but uses either two atoms or two near-litters
 instead of one. A binary condition `⟨⟨x, y⟩, A⟩` represents the constraint `π_A(x) = y` on an
 allowable permutation. -/
@@ -82,10 +117,10 @@ instance (α : type_index) : has_involutive_inv (binary_condition α) :=
   c⁻¹ = ⟨c.1.map prod.swap prod.swap, c.2⟩ := rfl
 
 /-- Converts a binary condition `⟨⟨x, y⟩, A⟩` into the support condition `⟨x, A⟩`. -/
-def domain : binary_condition α → support_condition α := prod.map (sum.map prod.fst prod.fst) id
+def domain : binary_condition α → spec_condition α := prod.map (sum.map prod.fst prod.fst) id
 
 /-- Converts a binary condition `⟨⟨x, y⟩, A⟩` into the support condition `⟨y, A⟩`. -/
-def range : binary_condition α → support_condition α := prod.map (sum.map prod.snd prod.snd) id
+def range : binary_condition α → spec_condition α := prod.map (sum.map prod.snd prod.snd) id
 
 @[simp] lemma domain_mk (x : (atom × atom) ⊕ (near_litter × near_litter)) (A : extended_index α) :
   domain (x, A) = (x.map prod.fst prod.fst, A) := rfl
@@ -113,7 +148,7 @@ end
 
 /-- A *unary specification* is a set of support conditions. This can be thought of as either the
 domain or range of a `spec`. -/
-abbreviation unary_spec (α : type_index) : Type u := set (support_condition α)
+abbreviation unary_spec (α : type_index) : Type u := set (spec_condition α)
 
 /-- A *specification* of an allowable permutation is a set of binary conditions on the allowable
 permutation.
@@ -193,11 +228,11 @@ rfl
 @[simp] lemma mem_inf : c ∈ σ ⊓ τ ↔ c ∈ σ ∧ c ∈ τ := iff.rfl
 @[simp] lemma mem_Sup {s : set $ spec α} : c ∈ Sup s ↔ ∃ σ ∈ s, c ∈ σ := mem_Union₂
 
-@[simp] lemma mem_domain {a : support_condition α} {σ : spec α} :
+@[simp] lemma mem_domain {a : spec_condition α} {σ : spec α} :
   a ∈ σ.domain ↔ ∃ cond : binary_condition α, cond ∈ σ ∧ cond.domain = a :=
 by simp_rw [←image_domain, mem_image, set_like.mem_coe]
 
-@[simp] lemma mem_range {a : support_condition α} {σ : spec α} :
+@[simp] lemma mem_range {a : spec_condition α} {σ : spec α} :
   a ∈ σ.range ↔ ∃ cond : binary_condition α, cond ∈ σ ∧ cond.range = a :=
 by simp_rw [←image_range, mem_image, set_like.mem_coe]
 
@@ -295,7 +330,7 @@ c.fst.elim
   (λ atoms, derivative c.snd π • atoms.fst = atoms.snd)
   (λ Ns, derivative c.snd π • Ns.fst = Ns.snd)
 
-@[simp] lemma satisfies_cond_atoms (a b : atom) (A : extended_index α) :
+lemma satisfies_cond_atoms (a b : atom) (A : extended_index α) :
   π.satisfies_cond ⟨inl ⟨a, b⟩, A⟩ ↔ derivative A π • a = b :=
 iff.rfl
 
@@ -350,11 +385,6 @@ using_well_founded { dec_tac := `[assumption] }
 
 end struct_perm
 
-/-- We can extend any support condition to one of a higher proper type index `α` by providing a path
-connecting the old extended index up to `α`. -/
-def support_condition.extend_path (c : support_condition β) (A : path (α : type_index) β) :
-  support_condition α := ⟨c.fst, A.comp c.snd⟩
-
 namespace binary_condition
 
 /-- We can extend any binary condition to one of a higher proper type index `α` by providing a path
@@ -376,12 +406,12 @@ def lower (σ : unary_spec α) (A : path α β) : unary_spec β := {c | c.extend
 /-- Lowering along the empty path does nothing. -/
 @[simp] lemma lower_nil (σ : unary_spec α) : σ.lower path.nil = σ :=
 by simp only
-  [unary_spec.lower, support_condition.extend_path, path.nil_comp, prod.mk.eta, set_of_mem_eq]
+  [unary_spec.lower, spec_condition.extend_path, path.nil_comp, prod.mk.eta, set_of_mem_eq]
 
 /-- The lowering map is functorial. -/
 @[simp] lemma lower_lower (σ : unary_spec α) (A : path α β) (B : path β γ) :
   (σ.lower A).lower B = σ.lower (A.comp B) :=
-by simp only [unary_spec.lower, support_condition.extend_path, mem_set_of_eq, path.comp_assoc]
+by simp only [unary_spec.lower, spec_condition.extend_path, mem_set_of_eq, path.comp_assoc]
 
 @[simp] lemma lower_union (σ τ : unary_spec α) (A : path α β) :
   (σ ∪ τ).lower A = σ.lower A ∪ τ.lower A :=
