@@ -62,13 +62,43 @@ noncomputable instance mul_action_spec_condition : mul_action (struct_perm α) (
     rw derivative_mul; dsimp; rw mul_smul,
   end }
 
-noncomputable instance mul_action_spec_condition' {B : le_index α} {β : Λ} {γ : type_index} {hγ : γ < β}
-  (A : path (B : type_index) β) :
-  mul_action (struct_perm ((lt_index.mk' hγ (B.path.comp A)) : le_index α).index)
-    (spec_condition γ) :=
+noncomputable instance mul_action_spec_condition' {A : le_index α} :
+  mul_action (struct_perm A.index)
+    (spec_condition A) :=
 struct_perm.mul_action_spec_condition
 
-namespace struct_perm
+end struct_perm
+
+/-! We now take the positioned tangle data that we just assumed exists, and make it accessible under
+all possible different names. This allows lean's typeclass inference to easily find all the required
+instances in many cases. -/
+
+/-! Make the positioned tangle data accessible as an instance for all `lt_index α`. -/
+instance lt_index_positioned_tangle_data (A : lt_index α) : positioned_tangle_data A.index :=
+phase_2_positioned_assumptions.lower_positioned_tangle_data A
+
+/-! Make the positioned tangle data accessible as an instance for all `lt_index α`,
+where the index is accessed through the coercion to `le_index`. -/
+instance lt_index_coe_positioned_tangle_data (A : lt_index α) :
+  positioned_tangle_data (A : le_index α).index :=
+phase_2_positioned_assumptions.lower_positioned_tangle_data A
+
+/-! Make the positioned tangle data accessible as an instance for all `proper_lt_index α`. -/
+instance proper_lt_index_positioned_tangle_data (A : proper_lt_index α) :
+  positioned_tangle_data A.index :=
+phase_2_positioned_assumptions.lower_positioned_tangle_data (A : lt_index α)
+
+/-! Make the positioned tangle data accessible as an instance for all `proper_lt_index α`,
+where the index is accessed through the coercion to `lt_index`. -/
+instance proper_lt_index_coe_positioned_tangle_data (A : proper_lt_index α) :
+  positioned_tangle_data (A : lt_index α).index :=
+phase_2_positioned_assumptions.lower_positioned_tangle_data (A : lt_index α)
+
+/-! Make the positioned tangle data accessible as an instance for all `proper_lt_index α`,
+where the index is accessed through the coercion to `le_index`. -/
+instance proper_lt_index_coe_coe_positioned_tangle_data (A : proper_lt_index α) :
+  positioned_tangle_data (A : le_index α).index :=
+phase_2_positioned_assumptions.lower_positioned_tangle_data (A : lt_index α)
 
 /-- A *binary condition* is like a support condition but uses either two atoms or two near-litters
 instead of one. A binary condition `⟨⟨x, y⟩, A⟩` represents the constraint `π_A(x) = y` on an
