@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="styles/style.css" />
+<link rel="stylesheet" href="styles/theme-blue.css" />
+<link rel="stylesheet" href="styles/stylecours.css" />
+<link rel="stylesheet" href="styles/style_coverage.css" />
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
+<title>Formalization status</title>
+</head>
+
+<body>
+<div class="wrapper">
+<header>
+  <a href="index.html">Home</a>
+  <h1 id="doc_title">Formalization status</h1>
+</header>
+
+<div class="content">
+
+<h2>Completion report</h2>
+
+Click chapter titles to see missing items.
+
+
+<section>
+  <h3>1 Phase 0: Preliminaries <span class="partial">94%</span></h3>
+  
+  <ul class="coverage">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 1.14 (def:allowable-perm-atoms)</div>
+      <div class="thm_thm_content"><p>  An <em>allowable \((-1)\)-permutation</em> is just a structural \((-1)\)-permutation. We denote the group of these by \(\mathrm{All}_{-1} = \mathrm{Str}_{-1}\). (Later we will define \(\mathrm{Str}_\beta \) as a proper subgroup of \(\mathrm{All}_\beta \), for higher \(\beta \).) </p>
+</div>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+  
+</section>
+
+<section>
+  <h3>2 Phase 1: The model construction <span class="partial">71%</span></h3>
+  
+  <ul class="coverage">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 2.20 (def:semi-tangle-action)</div>
+      <div class="thm_thm_content"><p>   Allowable permutations act on semi-tangles. </p>
+</div>
+    </li>
+    
+    
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 2.22 (lem:supportedness-equiv)</div>
+      <div class="thm_thm_content"><p>  If \(X \subseteq \tau _\beta \), \(Y \subseteq \tau _\gamma \), and \((\alpha ,\beta ,X) \equiv _\alpha (\alpha ,\gamma ,Y)\), then (under the action of allowable permutations on codes) a set \(S\) of conditions supports \(\beta \) if and only if it supports \(\gamma \). In particular, \((\alpha ,\beta ,X)\) has some small support if and only if \((\alpha ,\gamma ,Y)\) does. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 2.23 (def:typed-near-litter)</div>
+      <div class="thm_thm_content"><p>   Any code \((\alpha ,-1,N)\), where \(N\) is a near-litter, gives an element of \(\tau _\alpha \). </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 2.24 (def:typed-singleton)</div>
+      <div class="thm_thm_content"><p>   For any symmetric \(b \in \tau _\beta \), \((\alpha ,\beta ,\{ b\} ) \in \tau _\alpha \). In particular, this works for each atom \(a \in \tau _{-1}\). </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 2.25 (lem:small-subsets-closure)</div>
+      <div class="thm_thm_content"><p>   It should also be evident that \((\alpha ,\beta ,B)\) will always be symmetric if \(|B|{\lt}\kappa \) [take the union of the \(\beta \)-supports of elements of \(B\) and add \(\alpha \) to all the second components of elements of this union]: all small subsets of a type are realized in each higher type. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 2.26 (lem:tangle-action)</div>
+      <div class="thm_thm_content"><p>   The action of \(\alpha \)-allowable permutations on semi-tangles restricts to an action on tangles. Explicitly, if an \(\alpha \) semi-tangle \(x\) is symmetric, then so is \(\pi x\) for any \(\alpha \)-allowable permutation \(\pi \). </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 2.27 (def:embedding-into-pretangles)</div>
+      <div class="thm_thm_content"><p>  There is an evident injection \(\tau _\alpha \to \mathrm{Pretangle}_\alpha \) (where \(\tau _\alpha \) is constructed from the given tangle data). Moreover, this commutes with the \(\mathrm{All}_\alpha \)-action. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 2.28 (def:tangle-data-propagates)</div>
+      <div class="thm_thm_content"><p>  For a proper type index \(\alpha \in \lambda \), given tangle data at all levels \(\beta {\lt} \alpha \), then the constructions above provide <em>most</em> components of tangle data at level \(\alpha \) — everything except for the embedding \(\iota _\alpha : \tau _\alpha \to \mu \) and its properties. </p>
+<p>[Note that to treat this as a <em>definition</em>, in particular of the “designated supports” component, we are implicitly invoking the axiom of choice — a priori we only know that there <em>exists</em> some support for each new tangle.] </p>
+</div>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+  
+</section>
+
+<section>
+  <h3>3 Phase 2: Constraining the number of tangles <span class="partial">33%</span></h3>
+  
+  <ul class="coverage">
+    
+    
+    
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.11 (prop:total-1-1-gives-perm)</div>
+      <div class="thm_thm_content"><p>   A set of binary conditions is the graph of a structural permutation precisely if it is one-to-one and total. </p>
+<p>(NOTE: this may not be explicitly needed, but it is helpful to know, and should be a good warmup and definition-test ahead of the main freedom of action theorem, in particular <a href="sect0001.html#prop:total-allowable-partial-perm-actual">proposition 3.24</a>.) </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.12 (prop:total-1-1-restriction)</div>
+      <div class="thm_thm_content"><p>  If a set of \(\alpha \)-conditions \(\sigma \) is total (resp. co-total, 1-1) then so is its restriction \(\sigma _A\) for any path \(A : \beta \to \alpha \). </p>
+</div>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.18 (prop:allowable-partial-perm-chain-union)</div>
+      <div class="thm_thm_content"><p>   \(\sqsubseteq \) has upper bounds for chains, given by taking unions. That is: given a set of allowable partial permutations that is a chain under \(\sqsubseteq \), its union is again an allowable partial permutation, and carefully extends each element of the chain. (Indeed, this gives a supremum for the chain, and so shows that \(\sqsubseteq \) is chain-complete; but “upper bounds” is all we need in order to apply Zorn’s lemma.) </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.19 (def:constrains)</div>
+      <div class="thm_thm_content"><p>   Fix a freedom of action context at \(\alpha \). Then the relation \( \prec \) on \(\mathrm{Cond}_\alpha \), read as <em>“constrains”</em>, is defined by: </p>
+<ul class="itemize">
+  <li><p>\( (L, A) \prec (x, A) \), whenever \( L \) is a litter and \( x \in L \); (an atom is constrained by the litter it belongs to); </p>
+</li>
+  <li><p>\( (N^\circ , A) \prec (N, A) \) when \( N \) is a near-litter not equal to its corresponding litter \( N^\circ \); </p>
+</li>
+  <li><p>\( (x, A) \prec (N, A) \) for \(N\) as above and all \( x \in N\, \Delta \,  N^\circ \); </p>
+</li>
+  <li><p>\( (y, B:(\gamma {\lt}\beta ):A) \prec (L, A) \) for all paths \( A \colon \beta \to \alpha \), and \( \gamma ,\delta {\lt} \beta \), and \( L = f^A_{\gamma ,\delta }(x), x \in \tau _{\gamma :A} \), and \( (y,B) \in S_x \), where \( S_x \subseteq \mathrm{Cond}_\gamma \) is the designated support of \( x \). </p>
+</li>
+</ul>
+<p>Note: “\(x\) constrains \(y\)” is effectively defined separately in the three cases that \(y\) is an atom, a non-litter near-litter, or a non-flexible litter. Flexible litters are not constrained by anything. </p>
+<p>Note: This relation is not transitive — that’s OK, it’s not intended to be! </p>
+</div>
+    </li>
+    
+    
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.20 (prop:constrains-well-founded)</div>
+      <div class="thm_thm_content"><p>   The relation \( \prec \) is well-founded. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.21 (prop:restrict-allowable-partial-perm)</div>
+      <div class="thm_thm_content"><p>   If \(\sigma \) is an allowable permutation in a freedom of action context at \(\alpha \), then for any \(A : \beta \to \alpha \), the restriction \(\sigma _A\) is again allowable in the context restricted along \(A\). </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.22 (prop:allowable-partial-perm-action)</div>
+      <div class="thm_thm_content"><p>   Given a freedom of action context at a proper type index \(\alpha \), an allowable permuation \(\sigma \), and an \(\alpha \)-tangle \(x\) such that \(\mathrm{dom}\sigma \) supports \(x\): </p>
+<ol class="enumerate">
+  <li><p>if \(\pi , \pi ' \in \mathrm{All}_\alpha \) are allowable permutations extending \(\sigma \), then \(\pi x = \pi ' x\); </p>
+</li>
+  <li><p>if freedom of action holds, there is a unique \(y \in \tau _\alpha \) such that every allowable permutation \(\pi \) extending \(\sigma \) has \(\pi x = y\); we denote this unique value by \(\sigma x\). </p>
+</li>
+</ol>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.23 (lem:maximal-allowable-partial-perm-total)</div>
+      <div class="thm_thm_content"><p>   Any allowable partial permutation that is maximal under \(\sqsubseteq \) is total. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.24 (prop:total-allowable-partial-perm-actual)</div>
+      <div class="thm_thm_content"><p>   In the synthesised freedom of action context at \(\alpha \), any partial allowable permutation (at \(\alpha \)) that is total and co-total extends to an actual allowable permutation at \(\alpha \). </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.25 (def:strong-support)</div>
+      <div class="thm_thm_content"><p>  A <em>strong support</em> is a support \(S\) equipped with a well-ordering \(\prec _S\), such that whenever \(c \in S\) and \(d\) constrains \(c\), then \(d \in S\) and \(d \prec _S c\). </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.26 (lem:strengthen-support)</div>
+      <div class="thm_thm_content"><p>  Any support is a subset of some strong support (and hence any tangle is supported by some strong support). </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.27 (def:coding-function)</div>
+      <div class="thm_thm_content"><p>  For any support \(S\) and tangle \(x\), we can define a function \(\chi _{x,S}\) which sends \(T=\pi (S)\) to \(\pi (x)\) for every \(T\) in the orbit of \(S\) under the action of allowable permutations. We call such functions <em>coding functions </em>. Note that if \(\pi [S]=\pi '[S]\) then \((\pi ^{-1}\circ \pi ')[S]= S\), so \((\pi ^{-1}\circ \pi ')(x)= x\), so \(\pi (x)=\pi '(x)\), ensuring that the map \(\chi _{x,S}\) for which we gave an implicit definition is well defined. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.28 (def:support-spec)</div>
+      <div class="thm_thm_content"><p>  Fix a freedom of action context for \(\alpha \). A <em>support-specification</em> is …[this is quite long to define; we should get the text from more recent versions of Randall’s note] </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.29 (lem:count-support-specs)</div>
+      <div class="thm_thm_content"><p>  There are \({\lt}\mu \)-many support specifications. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.3 (def:synthesise-foa-context)</div>
+      <div class="thm_thm_content"><p>  Given \(\alpha \in \lambda \), and a freedom of action context at each \(\beta {\lt} \alpha \), together with extensions of their top-level core tangle data to full tangle data at each \(\beta {\lt} \alpha \), there is a <em>synthesised</em> freedom of action context at \(\alpha \), with its top-level core tangle data given by the constructions of phase 1. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.30 (def:support-spec-realisation)</div>
+      <div class="thm_thm_content"><p>  Any support specification can be realised (non-uniquely) to give a strong support. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.31 (lem:support-spec-realisation-unique)</div>
+      <div class="thm_thm_content"><p>  If freedom of action holds at \(\alpha \), then realisations of a support specification are unique modulo the group action. That is, for any two realisations \(S, S'\) of a support specification \(S\), there is some allowable permutation \(\pi \) such that \(\pi S = S'\). </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.32 (lem:strong-support-has-spec)</div>
+      <div class="thm_thm_content"><p>  Every strong support can be obtained as the realisation of some specification </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Corollary 3.33 (cor:count-strong-supports)</div>
+      <div class="thm_thm_content"><p>  There are \({\lt}\mu \)-many orbits of strong supports, under the group action of allowable permutations. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.34 (def:coding-function-spec)</div>
+      <div class="thm_thm_content"><p>  A <em>coding function specification</em> is …[again, see recent versions of Randall’s note] </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.35 (lem:count-coding-function-specs)</div>
+      <div class="thm_thm_content"><p>  There are \({\lt}\mu \)-many coding function specifications. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.36 (def:coding-function-spec-realisation)</div>
+      <div class="thm_thm_content"><p>  Any coding function specification can be realised as a coding function. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.37 (lem:coding-function-has-spec)</div>
+      <div class="thm_thm_content"><p>  Every coding function can be obtained as the realisation of some specification </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Corollary 3.38 (cor:count-coding-functions)</div>
+      <div class="thm_thm_content"><p>  There are \({\lt}\mu \)-many coding functions. </p>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Corollary 3.39 (cor:count-tangles)</div>
+      <div class="thm_thm_content"><p>  There are \(\mu \)-many \(\alpha \)-tangles. </p>
+</div>
+    </li>
+    
+    
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.40 (lem:position-functions-propagate)</div>
+      <div class="thm_thm_content"><p>  Given a freedom of action context for \(\alpha \) satisfying freedom of action at \(\alpha \), we can choose supports \(S(x)\) for all \(\alpha \)-tangles \(x\) and a position function \(\iota _\alpha : \tau _\alpha \to \mu \) satisfying the conditions demanded in <a href="ch-model-construction.html#def:tangle-data">definition 2.1</a>: </p>
+<ol class="enumerate">
+  <li><p>for each litter \(L\), the typed litter of \(L\) precedes the typed singletons of all its elements \(a \in L\) — explicitly, \(\iota (j(L)) {\lt} \iota (k(a))\); </p>
+</li>
+  <li><p>for each near-litter \(N\) which is not a litter, \(j(N)\) comes after its (typed) litter \(j(N^\circ )\), and after (the typed singletons of) all elements of \(N \mathrel {\triangle }N^\circ \); </p>
+</li>
+  <li><p>for each \(x\) in \(\tau _\alpha \) that is not a typed litter or singleton, \(x\) comes later than all of its designated support – explicitly, for each \((a,A)\) or \((N,A)\) in the in \(S(x)\), we must have \(\iota _\alpha (j(N)), \iota _\alpha (k(a)){\lt}\iota _\alpha (x)\). </p>
+</li>
+</ol>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.41 (def:main-recursion)</div>
+      <div class="thm_thm_content"><p>  For each \(\alpha \in \lambda \), we have the following data: </p>
+<ol class="enumerate">
+  <li><p>a full freedom of action context \(C_\alpha \) (whose components we write as \(\mathrm{All}^\alpha _A\), \(\tau ^\alpha _A\), etc.), </p>
+</li>
+  <li><p>such that each restruction \((C_\alpha )_A\) satisfies freedom of action, </p>
+</li>
+  <li><p>and with \({\lt}\mu \)-many coding functions at the top level. </p>
+</li>
+</ol>
+<p>This data is defined by recursion on \(\alpha \). Given such data for each \(\beta {\lt} \alpha \), </p>
+<ol class="enumerate">
+  <li><p>the core freedom of action context at \(\alpha \) is synthesised by <a href="sect0001.html#def:synthesise-foa-context">definition 3.3</a> (i.e. using the constructions of phase 1 to give the core tangle data at the top level, and assembling the context at proper paths from the given lower contexts); </p>
+</li>
+  <li><p>freedom of action at the top level follows by <a href="sect0001.html#thm:foa-propagates">theorem 3.16</a>; </p>
+</li>
+  <li><p>the top-level coding functions are bounded by <a href="sect0001.html#cor:count-coding-functions">corollary 3.38</a>; </p>
+</li>
+  <li><p>this allows us to complete the full tangle data at the top level, by <a href="sect0001.html#lem:position-functions-propagate">lemma 3.40</a>. </p>
+</li>
+</ol>
+</div>
+    </li>
+    
+    
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.42 (def:tangle-completed)</div>
+      <div class="thm_thm_content"><p>  The (actual, genuine, definitive!) tangles are the structure \(\mathrm{Tangle}\) extracted from the freedom of action contexts defined in <a href="sect0001.html#def:main-recursion">definition 3.41</a> as follows: </p>
+<ol class="enumerate">
+  <li><p>\(\tau _\alpha \) is the top-level tangles of the freedom of action context at \(\alpha \); </p>
+</li>
+  <li><p>“by construction” (i.e. by the defining clause of <a href="sect0001.html#def:main-recursion">definition 3.41</a>), \(\tau _\alpha \) is constructed by <a href="ch-model-construction.html#def:tangle">definition 2.21</a> from the tangles \(\tau _\beta \) for \(\beta {\lt} \alpha \); thus <a href="ch-model-construction.html#def:ttt-membership">definition 2.13</a> gives a membership relation \(\in _{\beta ,\alpha }\) from \(\tau _\beta \) to \(\tau _\alpha \), for each \(\beta {\lt} \alpha \). </p>
+</li>
+</ol>
+<p>[Note: The definition of \(\in _{\beta ,\alpha }\) uses a type equality on \(\tau _\alpha \), so may not be very nice to work with directly in subsequenet lemmas. However, it’s hard to see how any approach to this inductively constructed structure could avoid such issues. When we get to this stage, we can think about how to deal with this issue.] </p>
+</div>
+    </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+  
+</section>
+
+<section>
+  <h3>4 Tangles model tangled type theory <span class="ok">100%</span></h3>
+  
+</section>
+
+
+<h2>What to define next?</h2>
+
+
+<section>
+  
+  <h3>1 Phase 0: Preliminaries</h3>
+  <ul class="coverage">
+    
+    <li>
+      <div class="thm_thmheading">Definition 1.14 (def:allowable-perm-atoms)</div>
+      <div class="thm_thm_content"><p>  An <em>allowable \((-1)\)-permutation</em> is just a structural \((-1)\)-permutation. We denote the group of these by \(\mathrm{All}_{-1} = \mathrm{Str}_{-1}\). (Later we will define \(\mathrm{Str}_\beta \) as a proper subgroup of \(\mathrm{All}_\beta \), for higher \(\beta \).) </p>
+</div>
+    </li>
+    
+  </ul>
+  
+</section>
+
+<section>
+  
+  <h3>2 Phase 1: The model construction</h3>
+  <ul class="coverage">
+    
+    <li>
+      <div class="thm_thmheading">Definition 2.20 (def:semi-tangle-action)</div>
+      <div class="thm_thm_content"><p>   Allowable permutations act on semi-tangles. </p>
+</div>
+    </li>
+    
+    <li>
+      <div class="thm_thmheading">Definition 2.27 (def:embedding-into-pretangles)</div>
+      <div class="thm_thm_content"><p>  There is an evident injection \(\tau _\alpha \to \mathrm{Pretangle}_\alpha \) (where \(\tau _\alpha \) is constructed from the given tangle data). Moreover, this commutes with the \(\mathrm{All}_\alpha \)-action. </p>
+</div>
+    </li>
+    
+  </ul>
+  
+</section>
+
+<section>
+  
+  <h3>3 Phase 2: Constraining the number of tangles</h3>
+  <ul class="coverage">
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.19 (def:constrains)</div>
+      <div class="thm_thm_content"><p>   Fix a freedom of action context at \(\alpha \). Then the relation \( \prec \) on \(\mathrm{Cond}_\alpha \), read as <em>“constrains”</em>, is defined by: </p>
+<ul class="itemize">
+  <li><p>\( (L, A) \prec (x, A) \), whenever \( L \) is a litter and \( x \in L \); (an atom is constrained by the litter it belongs to); </p>
+</li>
+  <li><p>\( (N^\circ , A) \prec (N, A) \) when \( N \) is a near-litter not equal to its corresponding litter \( N^\circ \); </p>
+</li>
+  <li><p>\( (x, A) \prec (N, A) \) for \(N\) as above and all \( x \in N\, \Delta \,  N^\circ \); </p>
+</li>
+  <li><p>\( (y, B:(\gamma {\lt}\beta ):A) \prec (L, A) \) for all paths \( A \colon \beta \to \alpha \), and \( \gamma ,\delta {\lt} \beta \), and \( L = f^A_{\gamma ,\delta }(x), x \in \tau _{\gamma :A} \), and \( (y,B) \in S_x \), where \( S_x \subseteq \mathrm{Cond}_\gamma \) is the designated support of \( x \). </p>
+</li>
+</ul>
+<p>Note: “\(x\) constrains \(y\)” is effectively defined separately in the three cases that \(y\) is an atom, a non-litter near-litter, or a non-flexible litter. Flexible litters are not constrained by anything. </p>
+<p>Note: This relation is not transitive — that’s OK, it’s not intended to be! </p>
+</div>
+    </li>
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.27 (def:coding-function)</div>
+      <div class="thm_thm_content"><p>  For any support \(S\) and tangle \(x\), we can define a function \(\chi _{x,S}\) which sends \(T=\pi (S)\) to \(\pi (x)\) for every \(T\) in the orbit of \(S\) under the action of allowable permutations. We call such functions <em>coding functions </em>. Note that if \(\pi [S]=\pi '[S]\) then \((\pi ^{-1}\circ \pi ')[S]= S\), so \((\pi ^{-1}\circ \pi ')(x)= x\), so \(\pi (x)=\pi '(x)\), ensuring that the map \(\chi _{x,S}\) for which we gave an implicit definition is well defined. </p>
+</div>
+    </li>
+    
+    <li>
+      <div class="thm_thmheading">Definition 3.28 (def:support-spec)</div>
+      <div class="thm_thm_content"><p>  Fix a freedom of action context for \(\alpha \). A <em>support-specification</em> is …[this is quite long to define; we should get the text from more recent versions of Randall’s note] </p>
+</div>
+    </li>
+    
+  </ul>
+  
+</section>
+
+<section>
+  
+</section>
+
+
+<h2>What to state next?</h2>
+
+
+<section>
+  
+</section>
+
+<section>
+  
+  <h3>2 Phase 1: The model construction</h3>
+  <ul class="coverage">
+    
+    <li>
+      <div class="thm_thmheading">Lemma 2.22 (lem:supportedness-equiv)</div>
+      <div class="thm_thm_content"><p>  If \(X \subseteq \tau _\beta \), \(Y \subseteq \tau _\gamma \), and \((\alpha ,\beta ,X) \equiv _\alpha (\alpha ,\gamma ,Y)\), then (under the action of allowable permutations on codes) a set \(S\) of conditions supports \(\beta \) if and only if it supports \(\gamma \). In particular, \((\alpha ,\beta ,X)\) has some small support if and only if \((\alpha ,\gamma ,Y)\) does. </p>
+</div>
+    </li>
+    
+  </ul>
+  
+</section>
+
+<section>
+  
+  <h3>3 Phase 2: Constraining the number of tangles</h3>
+  <ul class="coverage">
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.12 (prop:total-1-1-restriction)</div>
+      <div class="thm_thm_content"><p>  If a set of \(\alpha \)-conditions \(\sigma \) is total (resp. co-total, 1-1) then so is its restriction \(\sigma _A\) for any path \(A : \beta \to \alpha \). </p>
+</div>
+    </li>
+    
+    <li>
+      <div class="thm_thmheading">Corollary 3.39 (cor:count-tangles)</div>
+      <div class="thm_thm_content"><p>  There are \(\mu \)-many \(\alpha \)-tangles. </p>
+</div>
+    </li>
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.40 (lem:position-functions-propagate)</div>
+      <div class="thm_thm_content"><p>  Given a freedom of action context for \(\alpha \) satisfying freedom of action at \(\alpha \), we can choose supports \(S(x)\) for all \(\alpha \)-tangles \(x\) and a position function \(\iota _\alpha : \tau _\alpha \to \mu \) satisfying the conditions demanded in <a href="ch-model-construction.html#def:tangle-data">definition 2.1</a>: </p>
+<ol class="enumerate">
+  <li><p>for each litter \(L\), the typed litter of \(L\) precedes the typed singletons of all its elements \(a \in L\) — explicitly, \(\iota (j(L)) {\lt} \iota (k(a))\); </p>
+</li>
+  <li><p>for each near-litter \(N\) which is not a litter, \(j(N)\) comes after its (typed) litter \(j(N^\circ )\), and after (the typed singletons of) all elements of \(N \mathrel {\triangle }N^\circ \); </p>
+</li>
+  <li><p>for each \(x\) in \(\tau _\alpha \) that is not a typed litter or singleton, \(x\) comes later than all of its designated support – explicitly, for each \((a,A)\) or \((N,A)\) in the in \(S(x)\), we must have \(\iota _\alpha (j(N)), \iota _\alpha (k(a)){\lt}\iota _\alpha (x)\). </p>
+</li>
+</ol>
+</div>
+    </li>
+    
+  </ul>
+  
+</section>
+
+<section>
+  
+</section>
+
+
+<h2>What to prove next?</h2>
+
+
+<section>
+  
+</section>
+
+<section>
+  
+  <h3>2 Phase 1: The model construction</h3>
+  <ul class="coverage">
+    
+    <li>
+      <div class="thm_thmheading">Lemma 2.24 (def:typed-singleton)</div>
+      <div class="thm_thm_content"><p>   For any symmetric \(b \in \tau _\beta \), \((\alpha ,\beta ,\{ b\} ) \in \tau _\alpha \). In particular, this works for each atom \(a \in \tau _{-1}\). </p>
+</div>
+    </li>
+    
+    <li>
+      <div class="thm_thmheading">Lemma 2.26 (lem:tangle-action)</div>
+      <div class="thm_thm_content"><p>   The action of \(\alpha \)-allowable permutations on semi-tangles restricts to an action on tangles. Explicitly, if an \(\alpha \) semi-tangle \(x\) is symmetric, then so is \(\pi x\) for any \(\alpha \)-allowable permutation \(\pi \). </p>
+</div>
+    </li>
+    
+  </ul>
+  
+</section>
+
+<section>
+  
+  <h3>3 Phase 2: Constraining the number of tangles</h3>
+  <ul class="coverage">
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.20 (prop:constrains-well-founded)</div>
+      <div class="thm_thm_content"><p>   The relation \( \prec \) is well-founded. </p>
+</div>
+    </li>
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.22 (prop:allowable-partial-perm-action)</div>
+      <div class="thm_thm_content"><p>   Given a freedom of action context at a proper type index \(\alpha \), an allowable permuation \(\sigma \), and an \(\alpha \)-tangle \(x\) such that \(\mathrm{dom}\sigma \) supports \(x\): </p>
+<ol class="enumerate">
+  <li><p>if \(\pi , \pi ' \in \mathrm{All}_\alpha \) are allowable permutations extending \(\sigma \), then \(\pi x = \pi ' x\); </p>
+</li>
+  <li><p>if freedom of action holds, there is a unique \(y \in \tau _\alpha \) such that every allowable permutation \(\pi \) extending \(\sigma \) has \(\pi x = y\); we denote this unique value by \(\sigma x\). </p>
+</li>
+</ol>
+</div>
+    </li>
+    
+    <li>
+      <div class="thm_thmheading">Lemma 3.23 (lem:maximal-allowable-partial-perm-total)</div>
+      <div class="thm_thm_content"><p>   Any allowable partial permutation that is maximal under \(\sqsubseteq \) is total. </p>
+</div>
+    </li>
+    
+    <li>
+      <div class="thm_thmheading">Proposition 3.24 (prop:total-allowable-partial-perm-actual)</div>
+      <div class="thm_thm_content"><p>   In the synthesised freedom of action context at \(\alpha \), any partial allowable permutation (at \(\alpha \)) that is total and co-total extends to an actual allowable permutation at \(\alpha \). </p>
+</div>
+    </li>
+    
+  </ul>
+  
+</section>
+
+<section>
+  
+</section>
+
+
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/coverage.js"></script>
+</body>
+</html>
